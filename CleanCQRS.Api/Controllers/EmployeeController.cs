@@ -1,4 +1,5 @@
 ﻿using CleanCQRS.Application.Command;
+using CleanCQRS.Application.Query;
 using CleanCQRS.Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +15,13 @@ namespace CleanCQRS.Api.Controllers
         public async Task<IActionResult> AddEmployee(EmployeeEntity employeeEntity)
         {
             var result = await mediator.Send(new AddEmployeeCommand(employeeEntity));
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllEmployees()
+        {
+            var result = await mediator.Send(new GetAllEmployeesQuery());
             return Ok(result);
         }
     }
