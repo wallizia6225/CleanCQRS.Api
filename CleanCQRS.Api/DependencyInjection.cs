@@ -1,4 +1,5 @@
 ﻿using CleanCQRS.Application;
+using CleanCQRS.Core;
 using CleanCQRS.Infrastructure;
 
 namespace CleanCQRS.Api
@@ -7,8 +8,10 @@ namespace CleanCQRS.Api
     {
         public static IServiceCollection AddApiDI(this IServiceCollection service, IConfiguration configuration)
         {
-            service.AddInfrastructureDI(configuration)
-                    .AddApplicationDI();
+            service.AddInfrastructureDI()
+                    .AddApplicationDI()
+                    //#OPTIONSPATTERN 5
+                    .AddCoreDI(configuration);
             return service;
         }
     }
