@@ -10,6 +10,9 @@ namespace CleanCQRS.Application
             service.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
+                //#EventsLearn 0
+                //this is for parallel execution.
+                cfg.NotificationPublisher = new TaskWhenAllPublisher();
             });
             return service;
         }
