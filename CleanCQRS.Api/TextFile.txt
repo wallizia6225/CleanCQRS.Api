@@ -1,0 +1,2 @@
+﻿Add-Migration "Initial_IdentityDB" -Context AppIdentityDbContext
+Update-Database -Context AppIdentityDbContext
